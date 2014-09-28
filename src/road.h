@@ -17,6 +17,8 @@ public:
 
     float widthInMeters() const;
 
+    float lineWidthInMeters() const;
+
     unsigned linesIn() const;
     unsigned linesOut() const;
 

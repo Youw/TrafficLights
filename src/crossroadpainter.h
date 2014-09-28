@@ -20,11 +20,19 @@ public:
     void setTopRoad(const Road* road);
     void setBottomRoad(const Road* road);
 
-private:
+    virtual void resizeEvent(QResizeEvent *) override;
+
+private:    
     const Road* left_road = 0;
     const Road* right_road = 0;
     const Road* top_road = 0;
     const Road* bottom_road = 0;
+
+    void calculateLinesChoords();
+    QVector<QLine> road_bounds;
+    QVector<QLine> road_dashes;
+    QVector<QLine> road_double_lines;
+    QVector<QLine> road_stop_lines;
 };
 
 #endif // ROADAREA_H

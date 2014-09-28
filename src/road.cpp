@@ -12,6 +12,11 @@ float Road::widthInMeters() const
     return line_width*(lines_in.size()+lines_out.size());
 }
 
+float Road::lineWidthInMeters() const
+{
+    return line_width;
+}
+
 unsigned Road::linesIn() const
 {
     return lines_in.size();

@@ -9,19 +9,19 @@ public:
   Loader() {}
 
   Road* getLeftRoad() {
-    return new Road(2,2,2.5);
+    return new Road(2,3,2.5);
   }
 
   Road* getTopRoad() {
-    return new Road(2,1,2.5);
+    return new Road(4,5,2.5);
   }
 
   Road* getRightRoad() {
-    return new Road(2,2,2.5);
+    return new Road(4,3,2.5);
   }
 
   Road* getBottomRoad() {
-    return new Road(1,2,2.5);
+    return new Road(2,3,2.5);
   }
 
 };
