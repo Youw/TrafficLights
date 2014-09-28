@@ -8,11 +8,12 @@
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
+  Loader l;
   CrossRoad crossroad(
-        Loader::getLeftRoad(),
-        Loader::getTopRoad(),
-        Loader::getRightRoad(),
-        Loader::getBottomRoad());
+        l.getLeftRoad(),
+        l.getTopRoad(),
+        l.getRightRoad(),
+        l.getBottomRoad());
   UIWindow mainWindow;
   QTimer timer;
 

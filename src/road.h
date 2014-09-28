@@ -13,9 +13,9 @@ class Road: public QObject
     Q_OBJECT
 
 public:
-    Road(float width, unsigned lines_in, unsigned lines_out);
+    Road(unsigned lines_in, unsigned lines_out, float lineWidth);
 
-    float width() const;
+    float widthInMeters() const;
 
     unsigned linesIn() const;
     unsigned linesOut() const;
@@ -28,7 +28,7 @@ public slots:
     void generateCar();
 
 private:
-    float road_width;
+    float line_width;
 
     using RoadLine = std::list<Car>;
 

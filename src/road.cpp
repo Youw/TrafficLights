@@ -1,15 +1,15 @@
 #include "road.h"
 
-Road::Road(float width, unsigned lines_in, unsigned lines_out):
-    road_width(width),
+Road::Road(unsigned lines_in, unsigned lines_out, float lineWidth):
+    line_width(lineWidth),
     lines_in(lines_in),
     lines_out(lines_out)
 {
 }
 
-float Road::width() const
+float Road::widthInMeters() const
 {
-    return road_width;
+    return line_width*(lines_in.size()+lines_out.size());
 }
 
 unsigned Road::linesIn() const

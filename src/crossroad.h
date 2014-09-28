@@ -9,21 +9,21 @@ class CrossRoad : public QObject
 {
     Q_OBJECT
 public:
-  CrossRoad(const Road& left_road,
-            const Road& top_road,
-            const Road& right_road,
-            const Road& bottom_road);
+  CrossRoad(Road* left_road,
+            Road* top_road,
+            Road* right_road,
+            Road* bottom_road);
 
-  void setPainter(CrossRoadPainter& painter);
+  void setCrossRoadPainter(CrossRoadPainter& painter);
 
 public slots:
   void timerTick();
 
 private:
-  Road left_road;
-  Road top_road;
-  Road right_road;
-  Road bottom_road;
+  Road* left_road;
+  Road* top_road;
+  Road* right_road;
+  Road* bottom_road;
 };
 
 #endif // CROSSROAD_H
