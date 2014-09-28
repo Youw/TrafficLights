@@ -1,7 +1,12 @@
 #ifndef ROAD_H
 #define ROAD_H
 
+#include<vector>
+#include<list>
+
 #include<QObject>
+
+#include"car.h"
 
 class Road: public QObject
 {
@@ -24,8 +29,11 @@ public slots:
 
 private:
     float road_width;
-    unsigned lines_in;
-    unsigned lines_out;
+
+    using RoadLine = std::list<Car>;
+
+    std::vector<RoadLine> lines_in;
+    std::vector<RoadLine> lines_out;
 
 };
 

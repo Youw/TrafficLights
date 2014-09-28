@@ -15,13 +15,16 @@ TEMPLATE = app
 SOURCES += main.cpp\
         uiwindow.cpp \
     road.cpp \
-    roadarea.cpp \
-    car.cpp
+    car.cpp \
+    crossroad.cpp \
+    crossroadpainter.cpp
 
 HEADERS  += uiwindow.h \
     road.h \
-    roadarea.h \
-    car.h
+    car.h \
+    crossroad.h \
+    crossroadpainter.h \
+    loader.h
 
 FORMS    += uiwindow.ui
 

@@ -40,7 +40,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="RoadArea" name="crossroad" native="true"/>
+     <widget class="CrossRoadPainter" name="crossroad" native="true"/>
     </item>
    </layout>
   </widget>
@@ -49,9 +49,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>RoadArea</class>
+   <class>CrossRoadPainter</class>
    <extends>QWidget</extends>
-   <header>roadarea.h</header>
+   <header>crossroadpainter.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

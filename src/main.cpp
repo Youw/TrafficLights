@@ -1,19 +1,28 @@
 #include "uiwindow.h"
-#include <QApplication>
+#include "crossroad.h"
+#include "loader.h"
 
+#include <QApplication>
 #include <QTimer>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    UIWindow w;
-    w.show();
+  QApplication a(argc, argv);
+  CrossRoad crossroad(
+        Loader::getLeftRoad(),
+        Loader::getTopRoad(),
+        Loader::getRightRoad(),
+        Loader::getBottomRoad());
+  UIWindow mainWindow;
+  QTimer timer;
 
-    QTimer timer;
+  crossroad.setCrossRoadPainter(mainWindow.getCrossRoadPainter());
 
-    QObject::connect(&timer,SIGNAL(timeout()),&w,SLOT(paintRoads()));
+  QObject::connect(&timer,SIGNAL(timeout()),&crossroad,SLOT(timerTick()));
+  QObject::connect(&timer,SIGNAL(timeout()),&mainWindow,SLOT(paintRoads()));
 
-    timer.start(500);
+  timer.start(500);
 
-    return a.exec();
+  mainWindow.show();
+  return a.exec();
 }

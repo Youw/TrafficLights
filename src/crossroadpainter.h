@@ -5,17 +5,16 @@
 
 #include<QWidget>
 
-class RoadArea : public QWidget
+class CrossRoadPainter : public QWidget
 {
     Q_OBJECT
 public:
     static const float METER_TO_PIXEL_SCALE;
 
-    explicit RoadArea(QWidget *parent = 0);
+    explicit CrossRoadPainter(QWidget *parent = 0);
 
     virtual void paintEvent(QPaintEvent*) override;
 
-public slots:
     void setLeftRoad(const Road* road);
     void setRightRoad(const Road* road);
     void setTopRoad(const Road* road);

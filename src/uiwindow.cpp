@@ -22,3 +22,7 @@ UIWindow::~UIWindow()
 void UIWindow::paintRoads() {
     ui->crossroad->update();
 }
+
+CrossRoadPainter& UIWindow::getCrossRoadPainter() const {
+  return *ui->crossroad;
+}

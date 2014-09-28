@@ -14,12 +14,12 @@ float Road::width() const
 
 unsigned Road::linesIn() const
 {
-    return lines_in;
+    return lines_in.size();
 }
 
 unsigned Road::linesOut() const
 {
-    return lines_out;
+    return lines_out.size();
 }
 
 void Road::moveAllCars() {

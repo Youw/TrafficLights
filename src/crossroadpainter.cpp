@@ -1,32 +1,32 @@
-#include "roadarea.h"
+#include "crossroadpainter.h"
 
 #include<QPainter>
 #include<QPen>
 #include<QBrush>
 
-const float RoadArea::METER_TO_PIXEL_SCALE = 3;
+const float CrossRoadPainter::METER_TO_PIXEL_SCALE = 3;
 
-RoadArea::RoadArea(QWidget *parent): QWidget(parent)
+CrossRoadPainter::CrossRoadPainter(QWidget *parent): QWidget(parent)
 {
 }
 
-void RoadArea::setLeftRoad(const Road* road) {
+void CrossRoadPainter::setLeftRoad(const Road* road) {
     left_road = road;
 }
 
-void RoadArea::setRightRoad(const Road* road) {
+void CrossRoadPainter::setRightRoad(const Road* road) {
     right_road = road;
 }
 
-void RoadArea::setTopRoad(const Road* road) {
+void CrossRoadPainter::setTopRoad(const Road* road) {
     top_road = road;
 }
 
-void RoadArea::setBottomRoad(const Road* road) {
+void CrossRoadPainter::setBottomRoad(const Road* road) {
     bottom_road = road;
 }
 
-void RoadArea::paintEvent(QPaintEvent*) {
+void CrossRoadPainter::paintEvent(QPaintEvent*) {
     QPainter p(this);
 
     p.fillRect(rect(),Qt::NoBrush);

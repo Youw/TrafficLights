@@ -1,9 +1,10 @@
 #ifndef UIWINDOW_H
 #define UIWINDOW_H
 
-#include"roadarea.h"
-
 #include <QMainWindow>
+
+#include "road.h"
+#include "crossroadpainter.h"
 
 namespace Ui {
 class UIWindow;
@@ -11,24 +12,20 @@ class UIWindow;
 
 class UIWindow : public QMainWindow
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    explicit UIWindow(QWidget *parent = 0);
-    ~UIWindow();
+  explicit UIWindow(QWidget *parent = 0);
+  ~UIWindow();
 
-signals:
-    void setLeftRoad(const Road* road);
-    void setRightRoad(const Road* road);
-    void setTopRoad(const Road* road);
-    void setBottomRoad(const Road* road);
+  CrossRoadPainter& getCrossRoadPainter() const;
 
 public slots:
-    void paintRoads();
+  void paintRoads();
 
 
 private:
-    Ui::UIWindow *ui;
+  Ui::UIWindow *ui;
 };
 
 #endif // UIWINDOW_H
