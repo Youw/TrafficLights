@@ -110,8 +110,8 @@ void CrossRoadPainter::calculateLinesChoords() {
     }
   tmp = (line.x1()-tmp)/2;
 
-  road_double_lines.push_back(line.translated(tmp-1,0));
-  road_double_lines.push_back(line.translated(tmp-4,0));
+  road_double_lines.push_back(line.translated(tmp-2,0));
+  road_double_lines.push_back(line.translated(tmp+1,0));
 
 
   line = QLine(road_bounds[2].p1(),{std::min(road_bounds[2].x2(),road_bounds[3].x2()),road_bounds[2].y2()});
@@ -141,8 +141,8 @@ void CrossRoadPainter::calculateLinesChoords() {
       }
     tmp = (line.x1()-tmp)/2;
 
-  road_double_lines.push_back(line.translated(tmp-1,0));
-  road_double_lines.push_back(line.translated(tmp-4,0));
+  road_double_lines.push_back(line.translated(tmp-2,0));
+  road_double_lines.push_back(line.translated(tmp+1,0));
 
   line = QLine(road_bounds[6].p1(),{std::max(road_bounds[6].x2(),road_bounds[7].x2()),road_bounds[6].y2()});
   for(unsigned i = 1; line = line.translated(0,right_road->lineWidthInMeters()*SCALE), i<right_road->linesIn(); i++) {

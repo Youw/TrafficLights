@@ -17,14 +17,16 @@ SOURCES += main.cpp\
     road.cpp \
     car.cpp \
     crossroad.cpp \
-    crossroadpainter.cpp
+    crossroadpainter.cpp \
+    trafficlight.cpp
 
 HEADERS  += uiwindow.h \
     road.h \
     car.h \
     crossroad.h \
     crossroadpainter.h \
-    loader.h
+    loader.h \
+    trafficlight.h
 
 FORMS    += uiwindow.ui
 
