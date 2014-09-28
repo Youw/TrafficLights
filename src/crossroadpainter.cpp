@@ -3,8 +3,12 @@
 #include<QPainter>
 #include<QPen>
 #include<QBrush>
+#include<QLine>
+#include<QVector>
 
-const float CrossRoadPainter::METER_TO_PIXEL_SCALE = 3;
+float CrossRoadPainter::METER_TO_PIXEL_SCALE = 7;
+
+#define SCALE METER_TO_PIXEL_SCALE
 
 CrossRoadPainter::CrossRoadPainter(QWidget *parent): QWidget(parent)
 {
@@ -38,11 +42,27 @@ void CrossRoadPainter::paintEvent(QPaintEvent*) {
 
     QPen pen = QPen(QBrush(),2);
     pen.setColor(Qt::black);
-    pen.setStyle(Qt::DashLine);
 
+    pen.setStyle(Qt::SolidLine);
     p.setPen(pen);
 
-    p.drawLine(10,10,100,100);
+    //some magic...
+    QVector<QLine> lines = {
+      QLine(width()/2-top_road->widthInMeters()*SCALE/2,0,width()/2-top_road->widthInMeters()*SCALE/2,height()/2-left_road->widthInMeters()*SCALE/2),
+      QLine(width()/2+top_road->widthInMeters()*SCALE/2,0,width()/2+top_road->widthInMeters()*SCALE/2,height()/2-right_road->widthInMeters()*SCALE/2),
 
+      QLine(0,height()/2-left_road->widthInMeters()*SCALE/2,width()/2-top_road->widthInMeters()*SCALE/2,    height()/2-left_road->widthInMeters()*SCALE/2),
+      QLine(0,height()/2+left_road->widthInMeters()*SCALE/2,width()/2-bottom_road->widthInMeters()*SCALE/2, height()/2+left_road->widthInMeters()*SCALE/2),
+
+      QLine(width()/2-bottom_road->widthInMeters()*SCALE/2,height(),width()/2-bottom_road->widthInMeters()*SCALE/2,height()/2+left_road->widthInMeters()*SCALE/2),
+      QLine(width()/2+bottom_road->widthInMeters()*SCALE/2,height(),width()/2+bottom_road->widthInMeters()*SCALE/2,height()/2+right_road->widthInMeters()*SCALE/2),
+
+      QLine(width(),height()/2-left_road->widthInMeters()*SCALE/2,width()/2+top_road->widthInMeters()*SCALE/2,height()/2-right_road->widthInMeters()*SCALE/2),
+      QLine(width(),height()/2+left_road->widthInMeters()*SCALE/2,width()/2+bottom_road->widthInMeters()*SCALE/2,height()/2+right_road->widthInMeters()*SCALE/2)
+
+
+    };
+
+    p.drawLines(lines);
 
 }

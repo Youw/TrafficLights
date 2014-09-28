@@ -9,7 +9,7 @@ class CrossRoadPainter : public QWidget
 {
     Q_OBJECT
 public:
-    static const float METER_TO_PIXEL_SCALE;
+    static float METER_TO_PIXEL_SCALE;
 
     explicit CrossRoadPainter(QWidget *parent = 0);
 
