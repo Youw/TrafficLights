@@ -11,6 +11,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = TraficLite
 TEMPLATE = app
 
+INCLUDEPATH += $$PWD/../include
+LIBS += -L$$PWD/../lib -lfuzzylite.dll
 
 SOURCES += main.cpp\
         uiwindow.cpp \
