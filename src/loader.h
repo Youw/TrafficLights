@@ -7,6 +7,8 @@
 
 class Loader
 {
+    const long PRIMARY_ROUTE_PERMIT_INTERVAL = 5;   //seconds
+    const long SECONDARY_ROUTE_PERMIT_INTERVAL = 3; //
 public:
   Loader() {}
 
@@ -38,7 +40,7 @@ public:
 private:
   TrafficLight* generateTrafficLight(CrossRoad* cross_road) {
     TrafficLight* result = new TrafficLight(cross_road);
-    //TODO:допиши тут
+    result->SetConfig(PRIMARY_ROUTE_PERMIT_INTERVAL, SECONDARY_ROUTE_PERMIT_INTERVAL);
     return result;
   }
 

@@ -13,8 +13,9 @@ class CrossRoad;
 class TrafficLight : public QObject
 {
     Q_OBJECT
-    const long int WarningTime = 1000;
-    const long int DefaultSignalPeriod = 5000; // current signal extra time if there aren't cars
+    const int MilisecondsPerSecond = 1000;
+    const long int WarningTime = 1;
+    const long int DefaultSignalPeriod = 5; // current signal extra time if there aren't cars
 public: //types:
     enum Route{         //this should be defined in the crossroad lieu of here
         ROUT_PRIMARY = 0,

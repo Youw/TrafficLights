@@ -35,6 +35,7 @@ TrafficLight::~TrafficLight()
 }
 void TrafficLight::_turnSignal(Route route, enum RouteSignal routeSignal, long interval)
 {
+    interval *= MilisecondsPerSecond;
     lastPrimaryRouteSignal = primaryRouteSignal;
     primaryRouteSignal = ((route == ROUT_PRIMARY) ? routeSignal : OppositSignal(routeSignal));
     secondaryRouteSignal = OppositSignal(primaryRouteSignal);
@@ -95,9 +96,9 @@ void TrafficLight::ConsiderChange()//dessision about signal type and its while
 {
     if (controllerType == CRISP_CONTROL)
     {
-        int nextInterval;
+        long int nextInterval;
         if (lastPrimaryRouteSignal == SIGNAL_WARNING)
-            nextInterval = WarningTime;
+            nextInterval = WarningTime*MilisecondsPerSecond;
         else if (lastPrimaryRouteSignal == SIGNAL_PERMIT)
             nextInterval = secondaryPermitInterval;
         else
@@ -113,8 +114,8 @@ void TrafficLight::ConsiderChange()//dessision about signal type and its while
         else
         {
             long int primaryCrispRating, secondaryCrispRating;
-            //primaryCrispRating = crossRoad->getRating(ROUT_PRIMARY);
-            //primaryCrispRating = crossRoad->getRating(ROUT_SECONDARY);
+            primaryCrispRating = crossRoad->getPrimaryRouteRaiting();
+            secondaryCrispRating = crossRoad->getSecondaryRouteRaiting();
             Route currentRoute = (primaryRouteSignal == SIGNAL_PERMIT) ? ROUT_PRIMARY : ROUT_SECONDARY;
             Route aRoute;
             if (primaryCrispRating == 0 && secondaryCrispRating != 0)
@@ -141,5 +142,4 @@ void TrafficLight::ConsiderChange()//dessision about signal type and its while
                 _turnSignal(aRoute, SIGNAL_WARNING, WarningTime);
         }
     }
-    //QTimer::singleShot(600000, &app, SLOT(quit()));
 }
