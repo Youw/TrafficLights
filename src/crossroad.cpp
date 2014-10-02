@@ -1,5 +1,7 @@
 #include "crossroad.h"
 
+#include"trafficlight.h"
+
 CrossRoad::CrossRoad(Road *left_road, Road *top_road, Road *right_road, Road *bottom_road):
   left_road(left_road),
   top_road(top_road),

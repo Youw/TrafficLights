@@ -5,6 +5,8 @@
 
 #include"crossroadpainter.h"
 
+class TrafficLight;
+
 class CrossRoad : public QObject
 {
     Q_OBJECT
@@ -24,6 +26,7 @@ private:
   Road* top_road;
   Road* right_road;
   Road* bottom_road;
+  TrafficLight* traffic_light;
 };
 
 #endif // CROSSROAD_H
