@@ -6,11 +6,13 @@
 #include<QLine>
 #include<QVector>
 
+#include<unordered_map>
+
 #include "road.h"
 #include "trafficlight.h"
 
-float CrossRoadPainter::METER_TO_PIXEL_SCALE = 7;
-
+float CrossRoadPainter::METER_TO_PIXEL_SCALE = 10;
+//just shorter name:
 #define SCALE METER_TO_PIXEL_SCALE
 
 CrossRoadPainter::CrossRoadPainter(QWidget *parent): QWidget(parent)
@@ -98,8 +100,44 @@ void CrossRoadPainter::paintTrafficLight(QPainter &p) {
       return;
     }
 
+  paintTrafficLightAt(p,width()/2,height()/2,traffic_light_size_pixels,traffic_light_size_pixels);
+
+  //дублюємо бульшу копію
+  int size = std::min(width()/5,height()/5);
+  int margin = std::min(width()*3/15,height()*3/15);
+  paintTrafficLightAt(p,margin,height()-margin,size,size);
+
 }
 
+void CrossRoadPainter::paintTrafficLightAt(QPainter& p, int x, int y, int width,int height) {
+  static std::unordered_map<int,QColor> signal_to_color {
+    {TrafficLight::SIGNAL_PERMIT,         QColor(Qt::green)},
+    {TrafficLight::SIGNAL_WARNING,        QColor(Qt::yellow)},
+    {TrafficLight::SIGNAL_PROHIBITION,    QColor(Qt::red)}
+  };
+
+  QPen pen;//(signal_to_color[ traffic_light->RouteSignal(TrafficLight::ROUT_PRIMARY) ]);
+  QBrush brush(signal_to_color[ traffic_light->RouteSignal(TrafficLight::ROUT_PRIMARY) ]);
+  p.setPen(pen);
+  p.setBrush(brush);
+
+  float light_margin = 7/2.0;
+
+  p.drawEllipse(QPoint(x-width/light_margin,y),int(width/2.0),int(height/2.0));
+  p.drawEllipse(QPoint(x+width/light_margin,y),int(width/2.0),int(height/2.0));
+
+//  pen.setColor(signal_to_color[ traffic_light->RouteSignal(TrafficLight::ROUT_SECONDARY) ]);
+  brush.setColor(signal_to_color[ traffic_light->RouteSignal(TrafficLight::ROUT_SECONDARY) ]);
+//  p.setPen(pen);
+  p.setBrush(brush);
+
+  p.drawEllipse(QPoint(x,y-height/light_margin),int(width/2.0),int(height/2.0));
+  p.drawEllipse(QPoint(x,y+height/light_margin),int(width/2.0),int(height/2.0));
+
+//  p.setPen(QPen());
+  p.setBrush(QBrush(Qt::black));
+  p.drawRect(x-width/2.0,y-height/2.0,width,height);
+}
 
 void CrossRoadPainter::paintEvent(QPaintEvent*) {
   QPainter p(this);
@@ -200,6 +238,6 @@ void CrossRoadPainter::calculateLinesChoords() {
       {{std::max(road_bounds[6].x2(),road_bounds[7].x2()),road_bounds[6].y2()},{std::max(road_bounds[6].x2(),road_bounds[7].x2()),road_bounds[7].y2()}}
     };
 
-  traffic_light_size_pixels = 0.7*SCALE*std::min(std::min(left_road->widthInMeters(),top_road->widthInMeters()),
+  traffic_light_size_pixels = 0.3*SCALE*std::min(std::min(left_road->widthInMeters(),top_road->widthInMeters()),
                                                  std::min(right_road->widthInMeters(),bottom_road->widthInMeters()));
 }

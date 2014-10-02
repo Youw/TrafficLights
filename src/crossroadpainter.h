@@ -45,6 +45,8 @@ private:
   QVector<QLine> road_stop_lines;
 
   int traffic_light_size_pixels = 0;
+
+  void paintTrafficLightAt(QPainter& p, int x_center, int y_center, int width,int height);
 };
 
 #endif // ROADAREA_H
