@@ -37,7 +37,8 @@ HEADERS  += uiwindow.h \
     crossroad.h \
     crossroadpainter.h \
     loader.h \
-    trafficlight.h
+    trafficlight.h \
+    globalsettings.h
 
 FORMS    += uiwindow.ui
 
