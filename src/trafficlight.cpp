@@ -1,6 +1,6 @@
 #include "trafficlight.h"
-
 #include "crossroad.h"
+#include "globalsettings.h"
 
 enum TrafficLight::RouteSignal TrafficLight::OppositSignal(const enum RouteSignal signal)
 {
@@ -35,7 +35,7 @@ TrafficLight::~TrafficLight()
 }
 void TrafficLight::_turnSignal(Route route, enum RouteSignal routeSignal, long interval)
 {
-    interval *= MilisecondsPerSecond;
+    interval *= MilisecondsPerSecond * GlobalSettings::time_scale;
     lastPrimaryRouteSignal = primaryRouteSignal;
     primaryRouteSignal = ((route == ROUT_PRIMARY) ? routeSignal : OppositSignal(routeSignal));
     secondaryRouteSignal = OppositSignal(primaryRouteSignal);
