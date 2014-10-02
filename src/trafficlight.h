@@ -13,8 +13,8 @@ class CrossRoad;
 class TrafficLight : public QObject
 {
     Q_OBJECT
-    const int WarningTime = 10;
-    const int DefaultSignalPeriod = 300;
+    const long int WarningTime = 1000;
+    const long int DefaultSignalPeriod = 5000; // current signal extra time if there aren't cars
 public: //types:
     enum Route{         //this should be defined in the crossroad lieu of here
         ROUT_PRIMARY = 0,
@@ -36,7 +36,8 @@ public: //methods:
     TrafficLight(CrossRoad* p_crossRoad = 0);
     ~TrafficLight();
     enum RouteSignal RouteSignal(enum Route r) const;
-    bool SetConfig(int priRouteInterval, int secRouteInterval);
+
+    bool SetConfig(int primaryRouteInterval, int secondaryRouteInterval);
     bool SetConfig(const QTextStream & is);
     bool Start(ControllerType c_type);
     void Stop();
@@ -45,7 +46,8 @@ signals:
 private slots:
     void ConsiderChange();
 private:
-    void _turnSignal(enum Route route, enum RouteSignal routeSignal, int interval = 0);
+    void _turnSignal(enum Route route, enum RouteSignal routeSignal, long interval = 0);
+    long _calculateInterval(long crispARouteRating, long crispBRouteRating);
     CrossRoad * crossRoad;
     QTimer timer;
     enum RouteSignal primaryRouteSignal, secondaryRouteSignal;
@@ -55,7 +57,7 @@ private:
     enum RouteSignal lastPrimaryRouteSignal;
         //fuzzy controller:
     fl::Engine * engine;
-    fl::InputVariable * primaryRating, * secondaryRating;
+    fl::InputVariable * aRouteRating, * bRouteRating;
     fl::OutputVariable * nextSignalWhile;
     fl::RuleBlock * ruleBlock;
 };
