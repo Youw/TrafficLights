@@ -12,7 +12,16 @@ TARGET = TraficLite
 TEMPLATE = app
 
 INCLUDEPATH += $$PWD/../include
-LIBS += -L$$PWD/../lib -lfuzzylite.dll
+
+windows {
+    LIBS += -L$$PWD/../lib/win32
+}
+
+linux-g++ {
+    LIBS += -L$$PWD/../lib/linux64
+}
+
+LIBS += -lfuzzylite-static
 
 SOURCES += main.cpp\
         uiwindow.cpp \

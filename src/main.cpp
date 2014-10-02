@@ -8,18 +8,22 @@
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
+  UIWindow mainWindow;
+  QTimer timer;
+
+
   Loader l;
-  CrossRoad crossroad(
+  CrossRoad cross_road(
         l.getLeftRoad(),
         l.getTopRoad(),
         l.getRightRoad(),
         l.getBottomRoad());
-  UIWindow mainWindow;
-  QTimer timer;
+  TrafficLight& traffic_light = l.getTrafficLight(&cross_road);
 
-  crossroad.setCrossRoadPainter(mainWindow.getCrossRoadPainter());
+  cross_road.setTrafficLight(&traffic_light);
+  cross_road.setCrossRoadPainter(mainWindow.getCrossRoadPainter());
 
-  QObject::connect(&timer,SIGNAL(timeout()),&crossroad,SLOT(timerTick()));
+  QObject::connect(&timer,SIGNAL(timeout()),&cross_road,SLOT(timerTick()));
   QObject::connect(&timer,SIGNAL(timeout()),&mainWindow,SLOT(paintRoads()));
 
   timer.start(500);
