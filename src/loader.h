@@ -2,6 +2,8 @@
 #define LOADER_H
 
 #include "road.h"
+#include "trafficlight.h"
+#include "crossroad.h"
 
 class Loader
 {
@@ -9,19 +11,28 @@ public:
   Loader() {}
 
   Road* getLeftRoad() {
-    return new Road(2,2,2.5);
+    static Road * result = new Road(2,2,2.5);
+    return result;
   }
 
   Road* getTopRoad() {
-    return new Road(1,1,2.5);
+    static Road * result = new Road(1,1,2.5);
+    return result;
   }
 
   Road* getRightRoad() {
-    return new Road(2,2,2.5);
+    static Road * result = new Road(2,2,2.5);
+    return result;
   }
 
   Road* getBottomRoad() {
-    return new Road(1,1,2.5);
+    static Road * result = new Road(1,1,2.5);
+    return result;
+  }
+
+  TrafficLight& getTrafficLight(CrossRoad* cross_road) {
+    static TrafficLight* result = new TrafficLight(cross_road);
+    return *result;
   }
 
 };

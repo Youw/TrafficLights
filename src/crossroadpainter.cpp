@@ -6,6 +6,9 @@
 #include<QLine>
 #include<QVector>
 
+#include "road.h"
+#include "trafficlight.h"
+
 float CrossRoadPainter::METER_TO_PIXEL_SCALE = 7;
 
 #define SCALE METER_TO_PIXEL_SCALE
@@ -38,18 +41,30 @@ void CrossRoadPainter::setBottomRoad(const Road* road) {
     calculateLinesChoords();
 }
 
+void CrossRoadPainter::setTrafficLight(const TrafficLight* t_l) {
+  traffic_light = t_l;
+}
+
 void CrossRoadPainter::resizeEvent(QResizeEvent *) {
   if(left_road && right_road && top_road && bottom_road)
     calculateLinesChoords();
 }
 
-void CrossRoadPainter::paintEvent(QPaintEvent*) {
-  QPainter p(this);
 
+void CrossRoadPainter::repaintAll(QPainter &p) {
+  clearAll(p);
+  paintRoads(p);
+  paintCars(p);
+  paintTrafficLight(p);
+}
+
+void CrossRoadPainter::clearAll(QPainter &p) {
   p.fillRect(rect(),Qt::NoBrush);
+}
 
+void CrossRoadPainter::paintRoads(QPainter &p) {
   if(!left_road || !right_road || !top_road || !bottom_road) {
-      p.drawText(rect(),Qt::AlignCenter,"Not all roads are setted for RoadArea");
+      p.drawText(rect(),Qt::AlignCenter,"Not all roads are setted for this painter");
       return;
   }
 
@@ -70,6 +85,25 @@ void CrossRoadPainter::paintEvent(QPaintEvent*) {
   pen.setWidth(3);
   p.setPen(pen);
   p.drawLines(road_stop_lines);
+}
+
+void CrossRoadPainter::paintCars(QPainter &p) {
+  (void)p;
+//TODO:
+}
+
+void CrossRoadPainter::paintTrafficLight(QPainter &p) {
+  if(!traffic_light) {
+      p.drawText(rect(),Qt::AlignCenter,"Traffic light not setter for this painter");
+      return;
+    }
+
+}
+
+
+void CrossRoadPainter::paintEvent(QPaintEvent*) {
+  QPainter p(this);
+  repaintAll(p);
 }
 
 void CrossRoadPainter::calculateLinesChoords() {
@@ -165,4 +199,7 @@ void CrossRoadPainter::calculateLinesChoords() {
       {{road_bounds[4].x2(),std::max(road_bounds[4].y2(),road_bounds[5].y2())},{road_bounds[5].x2(),std::max(road_bounds[4].y2(),road_bounds[5].y2())}},
       {{std::max(road_bounds[6].x2(),road_bounds[7].x2()),road_bounds[6].y2()},{std::max(road_bounds[6].x2(),road_bounds[7].x2()),road_bounds[7].y2()}}
     };
+
+  traffic_light_size_pixels = 0.7*SCALE*std::min(std::min(left_road->widthInMeters(),top_road->widthInMeters()),
+                                                 std::min(right_road->widthInMeters(),bottom_road->widthInMeters()));
 }

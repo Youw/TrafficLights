@@ -18,15 +18,17 @@ public:
 
   void setCrossRoadPainter(CrossRoadPainter& painter);
 
+  void setTrafficLight(const TrafficLight* traffic_light);
+
 public slots:
   void timerTick();
 
 private:
-  Road* left_road;
-  Road* top_road;
-  Road* right_road;
-  Road* bottom_road;
-  TrafficLight* traffic_light;
+  const Road* left_road;
+  const Road* top_road;
+  const Road* right_road;
+  const Road* bottom_road;
+  const TrafficLight* traffic_light;
 };
 
 #endif // CROSSROAD_H

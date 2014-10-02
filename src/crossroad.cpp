@@ -1,6 +1,7 @@
 #include "crossroad.h"
 
 #include"trafficlight.h"
+#include"road.h"
 
 CrossRoad::CrossRoad(Road *left_road, Road *top_road, Road *right_road, Road *bottom_road):
   left_road(left_road),
@@ -23,4 +24,9 @@ void CrossRoad::setCrossRoadPainter(CrossRoadPainter& painter) {
   painter.setTopRoad(top_road);
   painter.setRightRoad(right_road);
   painter.setBottomRoad(bottom_road);
+  painter.setTrafficLight(traffic_light);
+}
+
+void CrossRoad::setTrafficLight(const TrafficLight *t_l) {
+  traffic_light = t_l;
 }
