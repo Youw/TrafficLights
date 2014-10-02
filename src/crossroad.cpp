@@ -15,10 +15,6 @@ CrossRoad::CrossRoad(Road *left_road, Road *top_road, Road *right_road, Road *bo
   bottom_road->setParent(this);
 }
 
-void CrossRoad::timerTick() {
-
-}
-
 void CrossRoad::setCrossRoadPainter(CrossRoadPainter& painter) {
   painter.setLeftRoad(left_road);
   painter.setTopRoad(top_road);
@@ -27,6 +23,19 @@ void CrossRoad::setCrossRoadPainter(CrossRoadPainter& painter) {
   painter.setTrafficLight(traffic_light);
 }
 
+
+long CrossRoad::getPrimaryRouteRaiting() const {
+  return 42;
+}
+
+long CrossRoad::getSecondaryRouteRaiting() const {
+  return 42;
+}
+
 void CrossRoad::setTrafficLight(const TrafficLight *t_l) {
   traffic_light = t_l;
+}
+
+void CrossRoad::timerTick() {
+
 }

@@ -31,8 +31,15 @@ public:
   }
 
   TrafficLight& getTrafficLight(CrossRoad* cross_road) {
-    static TrafficLight* result = new TrafficLight(cross_road);
+    static TrafficLight* result = generateTrafficLight(cross_road);
     return *result;
+  }
+
+private:
+  TrafficLight* generateTrafficLight(CrossRoad* cross_road) {
+    TrafficLight* result = new TrafficLight(cross_road);
+    //TODO:допиши тут
+    return result;
   }
 
 };

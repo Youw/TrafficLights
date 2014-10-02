@@ -20,6 +20,9 @@ public:
 
   void setTrafficLight(const TrafficLight* traffic_light);
 
+  long getPrimaryRouteRaiting() const;
+  long getSecondaryRouteRaiting() const;
+
 public slots:
   void timerTick();
 
