@@ -98,7 +98,7 @@ void TrafficLight::ConsiderChange()//dessision about signal type and its while
     {
         long int nextInterval;
         if (lastPrimaryRouteSignal == SIGNAL_WARNING)
-            nextInterval = WarningTime*MilisecondsPerSecond;
+            nextInterval = WarningTime;
         else if (lastPrimaryRouteSignal == SIGNAL_PERMIT)
             nextInterval = secondaryPermitInterval;
         else
