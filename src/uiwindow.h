@@ -24,6 +24,15 @@ public slots:
   void paintRoads();
 
 
+private slots:
+  void on_freque_primary_sliderMoved(int position);
+
+  void on_freque_secondary_sliderMoved(int position);
+
+  void on_dispersion_primary_sliderMoved(int position);
+
+  void on_disparsion_secondary_sliderMoved(int position);
+
 private:
   Ui::UIWindow *ui;
 };

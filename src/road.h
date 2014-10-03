@@ -19,13 +19,12 @@ public:
 
   float lineWidthInMeters() const;
 
-  unsigned linesIn() const;
-  unsigned linesOut() const;
-
-
+  size_t linesIn() const;
+  size_t linesOut() const;
 
 signals:
   void carWantToCrossRoad(bool &allow_cross);
+  void moveCarOutOfRoad(Car& car);
 
 public slots:
   void moveAllCars();

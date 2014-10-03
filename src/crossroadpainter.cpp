@@ -223,26 +223,6 @@ void CrossRoadPainter::calculateLinesChoords()
 
   };
 
-  t_road = decltype(t_road) {
-    road_bounds[0].y2(),
-    road_bounds[0].x1()
-  };
-
-  l_road = decltype(l_road) {
-    road_bounds[2].x2(),
-    road_bounds[3].y1()
-  };
-
-  b_road = decltype(b_road) {
-    road_bounds[4].y2(),
-    road_bounds[5].x1()
-  };
-
-  r_road = decltype(r_road) {
-    road_bounds[7].x2(),
-    road_bounds[6].y2()
-  };
-
   auto line = QLine(road_bounds[0].p1(),{road_bounds[0].x2(),std::min(road_bounds[0].y2(),road_bounds[1].y2())});
 
   for(unsigned i = 1; line = line.translated(top_road->lineWidthInMeters()*SCALE,0), i<top_road->linesIn(); i++) {
@@ -298,11 +278,37 @@ void CrossRoadPainter::calculateLinesChoords()
   road_double_lines.push_back(line.translated(0,tmp+1));
 
   road_stop_lines = decltype(road_stop_lines) {
+      //top
       {{road_bounds[0].x2(),std::min(road_bounds[0].y2(),road_bounds[1].y2())},{road_bounds[1].x2(),std::min(road_bounds[0].y2(),road_bounds[1].y2())}},
+      //left
       {{std::min(road_bounds[2].x2(),road_bounds[3].x2()),road_bounds[2].y2()},{std::min(road_bounds[2].x2(),road_bounds[3].x2()),road_bounds[3].y2()}},
+      //bottom
       {{road_bounds[4].x2(),std::max(road_bounds[4].y2(),road_bounds[5].y2())},{road_bounds[5].x2(),std::max(road_bounds[4].y2(),road_bounds[5].y2())}},
+      //right
       {{std::max(road_bounds[6].x2(),road_bounds[7].x2()),road_bounds[6].y2()},{std::max(road_bounds[6].x2(),road_bounds[7].x2()),road_bounds[7].y2()}}
-    };
+
+  };
+
+  t_road = decltype(t_road) {
+    road_stop_lines[0].y1(),
+    road_stop_lines[0].x1()
+  };
+
+  l_road = decltype(l_road) {
+    road_stop_lines[1].x1(),
+    road_stop_lines[1].y2()
+  };
+
+  b_road = decltype(b_road) {
+    road_stop_lines[2].y1(),
+    road_stop_lines[2].x2()
+  };
+
+  r_road = decltype(r_road) {
+    road_stop_lines[3].x1(),
+    road_stop_lines[3].y1()
+};
+
 
   traffic_light_size_pixels = 0.3*SCALE*std::min(std::min(left_road->widthInMeters(),top_road->widthInMeters()),
                                                  std::min(right_road->widthInMeters(),bottom_road->widthInMeters()));

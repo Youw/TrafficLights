@@ -1,10 +1,12 @@
 #include "car.h"
+#include "globalsettings.h"
 
 #include <QPicture>
 
 Car::Car(float length, float width):
   my_length(length),
-  my_width(width)
+  my_width(width),
+  creation_time(QDateTime::currentDateTime().toTime_t())
 {
 
 }
@@ -36,4 +38,12 @@ Car& Car::setImage(QImage *image) {
 
 QImage *Car::image() const {
   return car_image;
+}
+
+float Car::speed() const {
+  return GlobalSettings::default_car_speed/GlobalSettings::time_scale;
+}
+
+time_t Car::getTimeBeingBeforeTrafficLights() const {
+  return QDateTime::currentDateTime().toTime_t()-creation_time;
 }
