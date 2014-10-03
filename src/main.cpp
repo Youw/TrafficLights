@@ -4,6 +4,9 @@
 
 #include <QApplication>
 #include <QTimer>
+#include <QSettings>
+#include <QFileInfo>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
@@ -18,10 +21,11 @@ int main(int argc, char *argv[])
         l.getTopRoad(),
         l.getRightRoad(),
         l.getBottomRoad());
-  TrafficLight& traffic_light = l.getTrafficLight(&cross_road);
-  traffic_light.Start(TrafficLight::CRISP_CONTROL);
+  TrafficLight* traffic_light = l.getTrafficLight(&cross_road);
+  traffic_light->setParent(&cross_road);
+  traffic_light->Start(TrafficLight::FUZZY_CONTROL);
 
-  cross_road.setTrafficLight(&traffic_light);
+  cross_road.setTrafficLight(traffic_light);
   cross_road.setCrossRoadPainter(mainWindow.getCrossRoadPainter());
 
   QObject::connect(&timer,SIGNAL(timeout()),&cross_road,SLOT(timerTick()));

@@ -5,7 +5,7 @@
 #include <QObject>
 #include <QTimer>
 #include <QTextStream>
-
+#include <QString>
 #include "fl/Headers.h"
 
 class CrossRoad;
@@ -38,8 +38,9 @@ public: //methods:
     ~TrafficLight();
     enum RouteSignal RouteSignal(enum Route r) const;
 
+    void GenerateIni(const QString & file_name) const;
     bool SetConfig(int primaryRouteInterval, int secondaryRouteInterval);
-    bool SetConfig(const QTextStream & is);
+    bool SetConfig(const QString &file_name);
     bool Start(ControllerType c_type);
     void Stop();
 signals:
