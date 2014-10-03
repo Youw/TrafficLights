@@ -19,6 +19,8 @@ struct GlobalSettings
 
   static float default_car_speed;
 
+  static float meter_to_pixel_scale;
+
 };
 
 #endif // GLOBALSETTINGS_H

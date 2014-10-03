@@ -10,10 +10,10 @@
 
 #include "road.h"
 #include "trafficlight.h"
+#include "globalsettings.h"
 
-float CrossRoadPainter::METER_TO_PIXEL_SCALE = 10;
 //just shorter name:
-#define SCALE METER_TO_PIXEL_SCALE
+#define SCALE GlobalSettings::meter_to_pixel_scale
 
 CrossRoadPainter::CrossRoadPainter(QWidget *parent): QWidget(parent)
 {

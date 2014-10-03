@@ -14,22 +14,22 @@ public:
   Loader() {}
 
   Road* getLeftRoad() {
-    static Road * result = new Road(1,2,2.5);
+    static Road * result = new Road(3,3,2.5);
     return result;
   }
 
   Road* getTopRoad() {
-    static Road * result = new Road(3,1,2.5);
+    static Road * result = new Road(2,2,2.5);
     return result;
   }
 
   Road* getRightRoad() {
-    static Road * result = new Road(4,2,2.5);
+    static Road * result = new Road(3,3,2.5);
     return result;
   }
 
   Road* getBottomRoad() {
-    static Road * result = new Road(3,1,2.5);
+    static Road * result = new Road(2,2,2.5);
     return result;
   }
 

@@ -15,3 +15,5 @@ long GlobalSettings::dispersion_time_next_car_secondary = 400;
 float GlobalSettings::default_distance_from_lights = 40;
 
 float GlobalSettings::default_car_speed = 0.7;
+
+float GlobalSettings::meter_to_pixel_scale = 10;

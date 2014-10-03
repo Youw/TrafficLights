@@ -2,6 +2,7 @@
 #define UIWINDOW_H
 
 #include <QMainWindow>
+#include <QLabel>
 
 #include "road.h"
 #include "crossroadpainter.h"
@@ -35,6 +36,12 @@ private slots:
 
 private:
   Ui::UIWindow *ui;
+
+  QLabel* freque_primary = new QLabel();
+  QLabel* freque_secondary = new QLabel();
+
+  QLabel* dispersion_primary = new QLabel();
+  QLabel* dispersion_secondary = new QLabel();
 };
 
 #endif // UIWINDOW_H
