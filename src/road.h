@@ -13,29 +13,35 @@ class Road: public QObject
     Q_OBJECT
 
 public:
-    Road(unsigned lines_in, unsigned lines_out, float lineWidth);
+  Road(unsigned lines_in, unsigned lines_out, float lineWidth);
 
-    float widthInMeters() const;
+  float widthInMeters() const;
 
-    float lineWidthInMeters() const;
+  float lineWidthInMeters() const;
 
-    unsigned linesIn() const;
-    unsigned linesOut() const;
+  size_t linesIn() const;
+  size_t linesOut() const;
 
 signals:
-    void carWantToCrossRoad(bool &allow_cross);
+  void carWantToCrossRoad(bool &allow_cross);
+  void moveCarOutOfRoad(Car& car);
 
 public slots:
-    void moveAllCars();
-    void generateCar();
+  void moveAllCars();
+  void generateCar(QImage *image);
+
+
+public:
+  using CarsLine = std::list<Car>;
+
+  CarsLine& getInCarsOnLine(unsigned line_in);
+  CarsLine& getOutCarsOnLine(unsigned line_out);
 
 private:
-    float line_width;
+  float line_width;
 
-    using RoadLine = std::list<Car>;
-
-    std::vector<RoadLine> lines_in;
-    std::vector<RoadLine> lines_out;
+  std::vector<CarsLine> lines_in;
+  std::vector<CarsLine> lines_out;
 
 };
 

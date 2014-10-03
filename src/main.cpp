@@ -1,6 +1,7 @@
 #include "uiwindow.h"
 #include "crossroad.h"
 #include "loader.h"
+#include "globalsettings.h"
 
 #include <QApplication>
 #include <QTimer>
@@ -31,7 +32,7 @@ int main(int argc, char *argv[])
   QObject::connect(&timer,SIGNAL(timeout()),&cross_road,SLOT(timerTick()));
   QObject::connect(&timer,SIGNAL(timeout()),&mainWindow,SLOT(paintRoads()));
 
-  timer.start(500);
+  timer.start(GlobalSettings::timer_interval);
 
   mainWindow.show();
   return a.exec();

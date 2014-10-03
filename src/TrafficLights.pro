@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     car.cpp \
     crossroad.cpp \
     crossroadpainter.cpp \
-    trafficlight.cpp
+    trafficlight.cpp \
+    globalsettings.cpp
 
 HEADERS  += uiwindow.h \
     road.h \
@@ -43,3 +44,6 @@ HEADERS  += uiwindow.h \
 FORMS    += uiwindow.ui
 
 CONFIG += C++11
+
+RESOURCES += \
+    grapfics.qrc

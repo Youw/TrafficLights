@@ -2,6 +2,7 @@
 #define CROSSROAD_H
 
 #include<QObject>
+#include<QTimer>
 
 #include"crossroadpainter.h"
 
@@ -26,12 +27,26 @@ public:
 public slots:
   void timerTick();
 
+  void primaryAllowedToCross(bool& allowed);
+  void secondaryAllowedToCross(bool& allowed);
+
+  void generateLeftCar();
+  void generateTopCar();
+  void generateRightCar();
+  void generateBottomCar();
+
+
 private:
-  const Road* left_road;
-  const Road* top_road;
-  const Road* right_road;
-  const Road* bottom_road;
+  Road* left_road;
+  Road* top_road;
+  Road* right_road;
+  Road* bottom_road;
   const TrafficLight* traffic_light;
+
+  QTimer* left_generator = new QTimer();
+  QTimer* right_generator = new QTimer();
+  QTimer* top_generator = new QTimer();
+  QTimer* bottom_generator = new QTimer();
 };
 
 #endif // CROSSROAD_H

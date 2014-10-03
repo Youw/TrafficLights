@@ -1,10 +1,24 @@
 #ifndef GLOBALSETTINGS_H
 #define GLOBALSETTINGS_H
 
-namespace GlobalSettings
+struct GlobalSettings
 {
-  double time_scale = 1.0;
+  static double time_scale;
 
-}
+  static long timer_interval;
+
+  static float cars_distance;
+
+  static long time_to_next_car_primary;
+  static long dispersion_time_next_car_primary;
+
+  static long time_to_next_car_secondary;
+  static long dispersion_time_next_car_secondary;
+
+  static float default_distance_from_lights;
+
+  static float default_car_speed;
+
+};
 
 #endif // GLOBALSETTINGS_H

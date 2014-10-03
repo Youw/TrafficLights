@@ -15,10 +15,10 @@ public:
   explicit CrossRoadPainter(QWidget *parent = 0);
 
 
-  void setLeftRoad(const Road* road);
-  void setRightRoad(const Road* road);
-  void setTopRoad(const Road* road);
-  void setBottomRoad(const Road* road);
+  void setLeftRoad(Road *road);
+  void setRightRoad(Road* road);
+  void setTopRoad(Road* road);
+  void setBottomRoad(Road* road);
   void setTrafficLight(const TrafficLight* traffic_light);
 
   void clearAll(QPainter&p);
@@ -28,14 +28,16 @@ public:
   void paintTrafficLight(QPainter&p);
 
 protected:
+  static int carOffsetFromRightInPixels(const Road& road, unsigned road_line);
+
   virtual void paintEvent(QPaintEvent*) override;
   virtual void resizeEvent(QResizeEvent *) override;
 
 private:    
-  const Road* left_road = 0;
-  const Road* right_road = 0;
-  const Road* top_road = 0;
-  const Road* bottom_road = 0;
+  Road* left_road = 0;
+  Road* right_road = 0;
+  Road* top_road = 0;
+  Road* bottom_road = 0;
   const TrafficLight* traffic_light = 0;
 
   void calculateLinesChoords();
@@ -47,6 +49,26 @@ private:
   int traffic_light_size_pixels = 0;
 
   void paintTrafficLightAt(QPainter& p, int x_center, int y_center, int width,int height);
+
+  struct {
+    int bottom;
+    int left;
+  } t_road;
+
+  struct {
+    int right;
+    int bottom;
+  } l_road;
+
+  struct {
+    int top;
+    int right;
+  } b_road;
+
+  struct {
+    int left;
+    int top;
+  } r_road;
 };
 
 #endif // ROADAREA_H
