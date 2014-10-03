@@ -43,3 +43,6 @@ HEADERS  += uiwindow.h \
 FORMS    += uiwindow.ui
 
 CONFIG += C++11
+
+RESOURCES += \
+    grapfics.qrc

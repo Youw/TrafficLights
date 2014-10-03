@@ -27,10 +27,10 @@ public slots:
   void timerTick();
 
 private:
-  const Road* left_road;
-  const Road* top_road;
-  const Road* right_road;
-  const Road* bottom_road;
+  Road* left_road;
+  Road* top_road;
+  Road* right_road;
+  Road* bottom_road;
   const TrafficLight* traffic_light;
 };
 

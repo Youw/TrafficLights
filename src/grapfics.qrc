@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>png/bottom/car-1.png</file>
+        <file>png/bottom/car-2.png</file>
+        <file>png/bottom/car-3.png</file>
+        <file>png/bottom/car-4.png</file>
+        <file>png/bottom/car-5.png</file>
+        <file>png/left/car-1.png</file>
+        <file>png/left/car-2.png</file>
+        <file>png/left/car-3.png</file>
+        <file>png/left/car-4.png</file>
+        <file>png/left/car-5.png</file>
+        <file>png/right/car-1.png</file>
+        <file>png/right/car-2.png</file>
+        <file>png/right/car-3.png</file>
+        <file>png/right/car-4.png</file>
+        <file>png/right/car-5.png</file>
+        <file>png/top/car-1.png</file>
+        <file>png/top/car-2.png</file>
+        <file>png/top/car-3.png</file>
+        <file>png/top/car-4.png</file>
+        <file>png/top/car-5.png</file>
+    </qresource>
+</RCC>
